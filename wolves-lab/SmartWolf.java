@@ -6,37 +6,26 @@ public class SmartWolf implements Wolf {
     public int[] moveAll(List<int[]> wolvesSight, List<int[]> preysSight) {
 
         int[] mymove = new int[2];
-        // int[][] moves = {{1, -1}, {0, 0}, {0, 0}, {-1, 1}};
 
         // Check if there are any wolves in sight (If there are no wolves, do a random move)
         if(!wolvesSight.isEmpty()){
 
             // Move in the direction of the closest wolf
-            for(int i = 0; i < wolvesSight.size(); i++) {
-                System.out.print("Wolf " + i + " ");
-                print_moves(wolvesSight.get(i));
-                System.out.println();
-                mymove[0] = get_opposite_direction(wolvesSight.get(i)[0]);
-                mymove[1] = get_opposite_direction(wolvesSight.get(i)[1]);
+            for (int[] wolf : wolvesSight) {
+                mymove[0] = get_opposite_direction(wolf[0]);
+                mymove[1] = get_opposite_direction(wolf[1]);
             }
 
             // Check if there are any preys in sight
-            // If there is a prey move towards it in the x-axis (only update one of the axis to mov towards the preys!)
+            // If there is a prey move towards it in the X-axis
             if(!preysSight.isEmpty()) {
 
-                // Move in the direction of the closest wolf
-                for (int i = 0; i < preysSight.size(); i++) {
-                    System.out.print("Prey " + i + " ");
-                    print_moves(preysSight.get(i));
-                    System.out.println();
-                    //mymove[0] = get_direction(preysSight.get(i)[0]);
-                    mymove[1] = get_opposite_direction(preysSight.get(i)[1]);
+                // Move in the direction of the closest prey
+                for (int[] prey : preysSight) {
+                    mymove[1] = get_opposite_direction(prey[1]);
                 }
             }
 
-
-        // TODO: If the wolves are too close just do random move because they will overlap
-        // Otherwise, follow the wolves (go either left (-1) or right (1) based on the direction of the wolf to follow)
         } else {
             mymove = randomMove();
         }
@@ -52,7 +41,7 @@ public class SmartWolf implements Wolf {
         return mymove;
     }
 
-    // Get the direction of the wolf in sight
+    // Get the opposite direction of the agent in sight to move towards it
     // move[0] --> UP = -1, DOWN = 1 --> Y-axis
     // move[1] --> LEFT = -1, RIGHT = 1 --> X-axis
     public int get_opposite_direction(int position) {
@@ -70,7 +59,7 @@ public class SmartWolf implements Wolf {
         }
     }
 
-    // UNUSED!!!
+    // UNUSED
     public int moveLim(List<int[]> wolvesSight, List<int[]> preysSight) {
         return 0;
     }

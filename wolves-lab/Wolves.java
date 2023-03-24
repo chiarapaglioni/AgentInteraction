@@ -246,7 +246,7 @@ public class Wolves {
         for (int i = 0; i < numWolves; i++) {
             int relX = wolfRow[wolf] - wolfRow[i];
             int relY = wolfCol[wolf] - wolfCol[i];
-            System.out.println("Other Wolf move: " + relX + ", " + relY);
+            //System.out.println("Other Wolf move: " + relX + ", " + relY);
 
             int[] agent = new int[]{relX, relY};
             wolves.add(agent);
@@ -262,7 +262,7 @@ public class Wolves {
             }
             int relX = wolfRow[wolf] - preyRow[i];
             int relY = wolfCol[wolf] - preyCol[i];
-            System.out.println("Prey move: " + relX + ", " + relY);
+            //System.out.println("Prey move: " + relX + ", " + relY);
 
             int[] agent = new int[]{relX, relY};
             preys.add(agent);
